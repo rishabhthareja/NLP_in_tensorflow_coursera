@@ -7,11 +7,11 @@ sentences = [
     'I love my cat',
     'You love my dog!',
     'Do you think my dog is amazing'
-    ]
+]
 
 # Initialize the Tokenizer class
-tokenizer = Tokenizer(num_words = 100, oov_token = "<OOV>")
-#tokenizer = Tokenizer(num_words = 100)
+tokenizer = Tokenizer(num_words=100, oov_token="<OOV>")
+# tokenizer = Tokenizer(num_words = 100)
 
 # Generate indices for each word in the corpus
 tokenizer.fit_on_texts(sentences)
@@ -31,13 +31,21 @@ print("Word_index: ", word_index)
 print("Sequences: ", sequences)
 print("Test sequences with new words: ", test_seq)
 
-
 """ 
-The output of the above code is:
+The output of the above code is if tokenizer is used like this:
+#tokenizer = Tokenizer(num_words = 100):
+
 Word_index:  {'my': 1, 'love': 2, 'dog': 3, 'i': 4, 'you': 5, 'cat': 6, 'do': 7, 'think': 8, 'is': 9, 'amazing': 10}
 Sequences:  [[4, 2, 1, 3], [4, 2, 1, 6], [5, 2, 1, 3], [7, 5, 8, 1, 3, 9, 10]]
 Test sequences with new words:  [[4, 2, 1, 3], [1, 3, 1]]
-  
+
+The output of the above code is if tokenizer is used like this:
+tokenizer = Tokenizer(num_words = 100, oov_token = "<OOV>"): 
+
+Word_index:  {'<OOV>': 1, 'my': 2, 'love': 3, 'dog': 4, 'i': 5, 'you': 6, 'cat': 7, 'do': 8, 'think': 9, 'is': 10, 'amazing': 11}
+Sequences:  [[5, 3, 2, 4], [5, 3, 2, 7], [6, 3, 2, 4], [8, 6, 9, 2, 4, 10, 11]]
+Test sequences with new words:  [[5, 1, 3, 2, 4], [2, 4, 1, 2, 1]]
+
 Word_index have details of all the encoding happened for each unique word from the sentences
 Sequences contain the list in which each element is represented using its tokens 
 For exmaple: "I love my dog" is represented as [4, 2, 1, 3] where each elemt is token for each word.
